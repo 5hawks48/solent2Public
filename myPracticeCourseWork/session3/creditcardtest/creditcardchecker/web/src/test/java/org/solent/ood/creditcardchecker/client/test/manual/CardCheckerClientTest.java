@@ -31,12 +31,36 @@ public class CardCheckerClientTest {
     }
 
     @Test
-    public void testPostClient() {
+    public void testValidNumberPostClient() {
 
         CardCheckerClient cardCheckerClient = new CardCheckerClient("http://localhost:8080/creditcardchecker-web");
-
+        CreditCard creditCard = new CreditCard();
+        creditCard.setCardnumber("5133880000000012");
+        creditCard.setCvv("123");
+        creditCard.setEndDate("11/23");
+        creditCard.setIssueNumber("01");
+        creditCard.setName("test");
+     
+        CardValidationResult result = cardCheckerClient.postCheckCard(creditCard);
+        assertTrue(result.isValid());
+        
         // TODO WRITE A TEST TO CHECK THE POST CLIENT
 
+    }
+    
+        @Test
+    public void testInvalidNumberPostClient() {
+
+        CardCheckerClient cardCheckerClient = new CardCheckerClient("http://localhost:8080/creditcardchecker-web");
+        CreditCard creditCard = new CreditCard();
+        creditCard.setCardnumber("5133880000000013");
+        creditCard.setCvv("123");
+        creditCard.setEndDate("11/23");
+        creditCard.setIssueNumber("01");
+        creditCard.setName("test");
+     
+        CardValidationResult result = cardCheckerClient.postCheckCard(creditCard);
+        assertFalse(result.isValid());
     }
 
 }
