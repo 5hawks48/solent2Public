@@ -11,7 +11,7 @@
 <%@ page import="org.solent.com504.oodd.cart.model.dto.ShoppingItem" %>
 <%@ page import="org.solent.com504.oodd.cart.web.WebObjectFactory"%>
 <%
-
+    request.setAttribute("selectedPage", "home");
     String message = "";
 
     ShoppingService shoppingService = WebObjectFactory.getShoppingService();
@@ -45,12 +45,9 @@
     }
 
 %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Shopping Cart</title>
-    </head>
+
+<jsp:include page="header.jsp" />
+<main role="main" class="container">
     <body>
         <p><%=message%><p>
 
@@ -68,7 +65,6 @@
             <tr>
                 <td><%=item.getName()%></td>
                 <td><%=item.getPrice()%></td>
-                <td></td>
                 <td>
                     <!-- post avoids url encoded parameters -->
                     <form action="./home.jsp" method="get">
@@ -89,6 +85,7 @@
                 <th>Item Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th></th>
             </tr>
 
             <% for (ShoppingItem item : shoppingCart.getShoppingCartItems()) {%>
@@ -98,7 +95,7 @@
                 <td><%=item.getQuantity()%></td>
                 <td>
                     <!-- post avoids url encoded parameters -->
-                    <form action="./home.jsp" method="get">
+                    <form action="./home.jsp" method="post">
                         <input type="hidden" name="itemUUID" value="<%=item.getUuid()%>">
                         <input type="hidden" name="itemName" value="<%=item.getName()%>">
                         <input type="hidden" name="action" value="removeItemFromCart">
@@ -121,4 +118,5 @@
 
 
     </body>
-</html>
+</main>
+<jsp:include page="footer.jsp" />
