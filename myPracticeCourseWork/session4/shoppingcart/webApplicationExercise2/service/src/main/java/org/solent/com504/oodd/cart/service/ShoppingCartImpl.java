@@ -10,12 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import org.solent.com504.oodd.cart.model.service.ShoppingCart;
 import org.solent.com504.oodd.cart.model.dto.ShoppingItem;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
  * @author cgallen
  */
 public class ShoppingCartImpl implements ShoppingCart {
+    public static Logger logger = LogManager.getLogger(ShoppingCartImpl.class);
 
     private HashMap<String, ShoppingItem> itemMap = new HashMap<String, ShoppingItem>();
 
@@ -30,7 +33,8 @@ public class ShoppingCartImpl implements ShoppingCart {
     }
 
     @Override
-    public void addItemToCart(ShoppingItem shoppingItem) {
+    public void addItemToCart(ShoppingItem shoppingItem) {      
+        logger.error("Adding to cart: " + shoppingItem.getName());
         boolean itemExists = false;
         for (String itemUUID : itemMap.keySet()) {
             ShoppingItem shoppingCartItem = itemMap.get(itemUUID);
