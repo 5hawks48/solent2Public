@@ -32,4 +32,9 @@ public class ShoppingServiceTest {
     public void test1() {
         assertNotNull(shoppingService);
     }
+    
+    @Test
+    public void testShoppingServiceItemCount() {
+        assertEquals(4, shoppingService.getAvailableItems().size() );
+    }
 }

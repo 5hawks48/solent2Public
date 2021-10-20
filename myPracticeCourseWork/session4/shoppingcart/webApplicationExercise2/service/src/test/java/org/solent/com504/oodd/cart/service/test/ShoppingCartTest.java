@@ -52,5 +52,16 @@ public class ShoppingCartTest {
 
     }
 
+    @Test
+    public void testShoppingCartRemove() {
+        ShoppingItem item = new ShoppingItem();
+        item.setName("Test");
+        shoppingCart.addItemToCart(item);
+        
+        shoppingCart.removeItemFromCart(item.getUuid());
+        
+        assertEquals(0, shoppingCart.getShoppingCartItems().size() );
+        
+    }
     // add your own tests here
 }

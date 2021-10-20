@@ -52,17 +52,18 @@ public class ShoppingCartImpl implements ShoppingCart {
         itemMap.remove(itemUuid);
     }
 
-    /**
+    
     @Override
     public double getTotal() {
         double total = 0;
         for (ShoppingItem item: itemMap.values()) {
-            total += item.getQuantity();
+            total += item.getQuantity() * item.getPrice();
         }
         return total;
     }
-    */
     
+    
+    /**
     @Override
     public double getTotal() {
         double total = 0;
@@ -75,4 +76,5 @@ public class ShoppingCartImpl implements ShoppingCart {
         return total;
 
     }
+    */
 }
