@@ -6,6 +6,7 @@
 package org.solent.com504.oodd.cart.model.service;
 
 import org.solent.com504.oodd.cart.model.dto.ShoppingItem;
+import org.solent.com504.oodd.cart.model.dto.Invoice;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface ShoppingService {
     
         public List<ShoppingItem> getAvailableItems();
         
-        public boolean purchaseItems(ShoppingCart shoppingCart);
+        public Invoice purchaseItems(ShoppingCart shoppingCart);
         
         public ShoppingItem getNewItemByName(String uuid);
 

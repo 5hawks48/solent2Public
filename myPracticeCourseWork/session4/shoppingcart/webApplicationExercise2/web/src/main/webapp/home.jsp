@@ -12,7 +12,7 @@
 <%@ page import="org.solent.com504.oodd.cart.web.WebObjectFactory"%>
 <%
 
-    String message="";
+    String message = "";
 
     ShoppingService shoppingService = WebObjectFactory.getShoppingService();
 
@@ -26,7 +26,7 @@
     String itemName = (String) request.getParameter("itemName");
     String itemUuid = (String) request.getParameter("itemUUID");
 
-     if ("addItemToCart".equals(action)) {
+    if ("addItemToCart".equals(action)) {
         ShoppingItem shoppingItem = shoppingService.getNewItemByName(itemName);
         if (shoppingItem == null) {
             message = "Error adding " + itemName + " to cart";
@@ -37,6 +37,9 @@
     } else if ("removeItemFromCart".equals(action)) {
         message = "Removed " + itemName;
         shoppingCart.removeItemFromCart(itemUuid);
+    } else if (("purchase").equals(action)) {
+        message = "Trying to purchase...";
+        shoppingService.purchaseItems(shoppingCart);
     } else {
         message = "Error: " + action;
     }
@@ -108,5 +111,14 @@
         </table>
 
         <p>Total cost: <%=shoppingCart.getTotal()%></p>
+
+        <form action="./invoice.jsp" method="get">    
+            <!--<input type="hidden" name="shoppingCart" value="<%=shoppingCart%>">-->
+            <input type="hidden" name="action" value="purchase">
+            <button type="submit" >Purchase Items</button>
+        </form>
+
+
+
     </body>
 </html>

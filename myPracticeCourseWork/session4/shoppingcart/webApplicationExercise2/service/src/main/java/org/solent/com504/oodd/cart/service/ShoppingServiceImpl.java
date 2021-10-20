@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import org.solent.com504.oodd.cart.model.service.ShoppingCart;
+import org.solent.com504.oodd.cart.model.dto.Invoice;
 import org.solent.com504.oodd.cart.model.dto.ShoppingItem;
 import org.solent.com504.oodd.cart.model.service.ShoppingService;
 
@@ -41,13 +42,13 @@ public class ShoppingServiceImpl implements ShoppingService {
     }
 
     @Override
-    public boolean purchaseItems(ShoppingCart shoppingCart) {
+    public Invoice purchaseItems(ShoppingCart shoppingCart) {
         System.out.println("purchased items");
+        Invoice invoice = new Invoice();
         for (ShoppingItem shoppingItem : shoppingCart.getShoppingCartItems()) {
             System.out.println(shoppingItem);
         }
-
-        return true;
+        return invoice;
     }
 
     @Override
