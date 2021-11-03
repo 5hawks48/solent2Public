@@ -101,6 +101,12 @@ public class MVCController {
         return "home";
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public String myRuntimeExceptionHandler(final Exception e, Model model, HttpServletRequest request) {
+        model.addAttribute("requestUrl", "wow");
+        return "error"; // Refers to error.jsp
+    }
+    
     /*
      * Default exception handler, catches all exceptions, redirects to friendly
      * error page. Does not catch request mapping errors
