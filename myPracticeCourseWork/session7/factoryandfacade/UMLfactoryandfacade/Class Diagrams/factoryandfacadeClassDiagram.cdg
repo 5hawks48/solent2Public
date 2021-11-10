@@ -9,6 +9,7 @@
         <Method name="createCat" returnType="Animal" visibility="public" isStatic="true"/>
         <Method name="createDog" returnType="Animal" visibility="public" isStatic="true"/>
         <Method name="createCow" returnType="Animal" visibility="public" isStatic="true"/>
+        <Method name="createDuck" returnType="Animal" visibility="public" isStatic="true"/>
         <Method name="createFarmFacade" returnType="FarmFacade" visibility="public" isStatic="true"/>
       </Methods>
     </Class>
@@ -23,6 +24,11 @@
       <Methods/>
     </Class>
     <Class name="Cow" package="org.solent.com504.factoryandfacade.model" visibility="public" xPosition="834.0" yPosition="430.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Duck" package="org.solent.com504.factoryandfacade.model" visibility="public" xPosition="927.0" yPosition="304.0">
       <Fields/>
       <Constructors/>
       <Methods/>
@@ -48,6 +54,9 @@
         <Method name="addCow" returnType="void" visibility="public">
           <Argument type="String" name="name"/>
         </Method>
+        <Method name="addDuck" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
       </Methods>
     </Interface>
   </ClassDiagramComponents>
@@ -55,7 +64,8 @@
     <UseRelation name="createsObjects" source="org.solent.com504.factoryandfacade.model.AnimalObjectFactory" target="org.solent.com504.factoryandfacade.model.Animal" sourceCardinality="1..1" targetCardinality="1..1"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="org.solent.com504.factoryandfacade.model.Dog" target="org.solent.com504.factoryandfacade.model.Animal"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="org.solent.com504.factoryandfacade.model.Cow" target="org.solent.com504.factoryandfacade.model.Animal"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="org.solent.com504.factoryandfacade.model.Cat" target="org.solent.com504.factoryandfacade.model.Animal"/>
     <UseRelation name="usesAnimal" source="org.solent.com504.factoryandfacade.model.FarmFacade" target="org.solent.com504.factoryandfacade.model.Animal" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="org.solent.com504.factoryandfacade.model.Cat" target="org.solent.com504.factoryandfacade.model.Animal"/>
+	<ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="org.solent.com504.factoryandfacade.model.Duck" target="org.solent.com504.factoryandfacade.model.Animal"/>
   </ClassDiagramRelations>
 </ClassDiagram>
