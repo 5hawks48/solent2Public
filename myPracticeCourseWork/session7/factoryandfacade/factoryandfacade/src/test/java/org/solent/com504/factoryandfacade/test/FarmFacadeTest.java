@@ -31,12 +31,21 @@ public class FarmFacadeTest {
         String catName = "fluffy";
         farmFacade.addCat(catName);
         
-        animals = farmFacade.getAllAnimals();
-        assertEquals(1, animals.size());
+        // test create dog
+        String dogName = "Bruno";
+        farmFacade.addDog(dogName);
         
-        assertEquals(catName, animals.get(0).getName());
-  
+        // test create cow
+        String cowName = "Bessy";
+        farmFacade.addCow(cowName);
+        
+        animals = farmFacade.getAllAnimals();
+        
+        assertEquals(3, animals.size());        
+        assertEquals(catName, animals.get(0).getName());        
         // WHAT OTHER TESTS WOULD YOU CREATE HERE TO SET UP AND TEST THE FARM FACADE?
+        assertEquals(dogName, animals.get(1).getName());
+        assertEquals(cowName, animals.get(2).getName());
 
     }
 }

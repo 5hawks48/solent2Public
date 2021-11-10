@@ -27,7 +27,9 @@ public class FarmFacadeImpl implements FarmFacade {
 
     @Override
     public void addDog(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Animal animal = AnimalObjectFactory.createDog();
+        animal.setName(name);
+        animalList.add(animal);
     }
 
     @Override
@@ -39,7 +41,9 @@ public class FarmFacadeImpl implements FarmFacade {
 
     @Override
     public void addCow(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Animal animal = AnimalObjectFactory.createCow();
+        animal.setName(name);
+        animalList.add(animal);
     }
 
 }
