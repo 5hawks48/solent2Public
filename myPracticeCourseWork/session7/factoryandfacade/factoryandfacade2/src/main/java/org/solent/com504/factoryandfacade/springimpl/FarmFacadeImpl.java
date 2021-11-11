@@ -5,6 +5,7 @@
  */
 package org.solent.com504.factoryandfacade.springimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.solent.com504.factoryandfacade.model.Animal;
 import org.solent.com504.factoryandfacade.model.FarmFacade;
@@ -15,20 +16,38 @@ import org.solent.com504.factoryandfacade.model.FarmFacade;
  */
 public class FarmFacadeImpl implements FarmFacade {
 
+    private List<Animal> animalList = new ArrayList<Animal>();
+    
     public List<Animal> getAllAnimals() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return new ArrayList<Animal>(animalList);
     }
 
+    @Override
     public void addDog(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Animal animal = AnimalObjectFactory.createDog();
+        animal.setName(name);
+        animalList.add(animal);
     }
 
+    @Override
     public void addCat(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Animal animal = AnimalObjectFactory.createCat();
+        animal.setName(name);
+        animalList.add(animal);
     }
 
+    @Override
     public void addCow(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Animal animal = AnimalObjectFactory.createCow();
+        animal.setName(name);
+        animalList.add(animal);
+    }
+
+    @Override
+    public void addDuck(String name) {
+        Animal animal = AnimalObjectFactory.createDuck();
+        animal.setName(name);
+        animalList.add(animal);
     }
     
 }
