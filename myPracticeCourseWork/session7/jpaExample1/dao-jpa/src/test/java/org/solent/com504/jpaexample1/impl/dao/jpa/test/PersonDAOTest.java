@@ -59,8 +59,11 @@ public class PersonDAOTest {
     @Test
     public void findByIdTest() {
         LOG.debug("start of findByIdTest()");
-        //TODO implement test
-        LOG.debug("NOT IMPLEMENTED");
+        init();
+        Person x = personDao.findAll().get(0);
+        Person p = personDao.findById(x.getId());
+        assertEquals(p.getId(), x.getId());
+        assertEquals(p, x);
         LOG.debug("end of findByIdTest()");
     }
 
@@ -74,6 +77,7 @@ public class PersonDAOTest {
 
     @Test
     public void findAllTest() {
+        init();
         LOG.debug("start of findAllTest()");
 
         init();
@@ -89,16 +93,18 @@ public class PersonDAOTest {
             msg = msg +"\n   " +  person.toString();
         }
         LOG.debug("findAllTest() retrieved:" + msg);
-
-        LOG.debug("NOT IMPLEMENTED");
         LOG.debug("end of findAllTest()");
     }
 
     @Test
     public void deleteByIdTest() {
+        init();
         LOG.debug("start of deleteByIdTest()");
-        //TODO implement test
-        LOG.debug("NOT IMPLEMENTED");
+        Person x = personDao.findAll().get(4);
+        personDao.deleteById(x.getId());
+        
+        assertEquals(4, personDao.findAll().size());
+        assertNull(personDao.findById(x.getId()));
         LOG.debug("end of deleteByIdTest()");
     }
 

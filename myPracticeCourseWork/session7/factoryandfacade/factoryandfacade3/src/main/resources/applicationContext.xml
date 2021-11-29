@@ -12,7 +12,7 @@
     <bean id="Cow" class="org.solent.com504.factoryandfacade.impl.CowImpl" scope="prototype"/>
     <bean id="Dog" class="org.solent.com504.factoryandfacade.impl.DogImpl" scope="prototype"/>
     <bean id="Duck" class="org.solent.com504.factoryandfacade.impl.DuckImpl" scope="prototype"/>
-    
+    <bean id="Fish" class="org.solent.com504.factoryandfacade.impl.FishImpl" scope="prototype"/>
     <!-- singleton beans -->
     <!-- Defining a bean with singleton scope means the container creates a single instance of that bean,--> 
     <!-- and all requests for that bean name will return the same object, which is cached. -->
@@ -26,7 +26,8 @@
                 <value>Cat</value>
                 <value>Cow</value>
                 <value>Dog</value>   
-                <value>Duck</value>           
+                <value>Duck</value>
+                <value>Fish</value>              
             </list>
         </constructor-arg>
     </bean>

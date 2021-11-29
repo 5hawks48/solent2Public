@@ -7,6 +7,7 @@ package org.solent.com504.jpaexample1.impl.dao.jpa;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.apache.logging.log4j.LogManager;
@@ -37,13 +38,15 @@ public class AppointmentDAOJpaImpl implements AppointmentDAO {
 
     @Override
     public Appointment save(Appointment appointment) {
-        entityManager.getTransaction().begin();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+        LOG.debug("entityTransaction active: " + entityTransaction.isActive());
         try {
             entityManager.persist(appointment);
-            entityManager.getTransaction().commit();
+            entityTransaction.commit();
         } catch (Exception ex) {
             LOG.error(ex);
-            entityManager.getTransaction().rollback();
+            entityTransaction.rollback();
         }
         return appointment;
     }
@@ -89,12 +92,16 @@ public class AppointmentDAOJpaImpl implements AppointmentDAO {
 
     @Override
     public List<Appointment> findByPersonA(Person personA) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Appointment> q = entityManager.createQuery("SELECT a from Appointment a WHERE appointment.personA=:personA", Appointment.class);
+        List<Appointment> appointmentList = q.getResultList();
+        return appointmentList;
     }
 
     @Override
     public List<Appointment> findByPersonB(Person personB) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Appointment> q = entityManager.createQuery("SELECT a from Appointment a WHERE appointment.personB=:personB", Appointment.class);
+        List<Appointment> appointmentList = q.getResultList();
+        return appointmentList;
     }
 
     @Override

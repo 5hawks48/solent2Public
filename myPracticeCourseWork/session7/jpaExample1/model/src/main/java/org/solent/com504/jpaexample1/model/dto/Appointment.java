@@ -25,7 +25,7 @@ public class Appointment {
     }
 
     private String descripton;
-
+    
     private Person personA;
 
     private Person personB;

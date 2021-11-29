@@ -14,6 +14,7 @@ import org.solent.com504.factoryandfacade.model.Animal;
 import org.solent.com504.factoryandfacade.model.Cat;
 import org.solent.com504.factoryandfacade.model.Cow;
 import org.solent.com504.factoryandfacade.model.Dog;
+import org.solent.com504.factoryandfacade.model.Fish;
 import org.solent.com504.factoryandfacade.model.Duck;
 import org.solent.com504.factoryandfacade.model.FarmFacade;
 import org.solent.com504.factoryandfacade.model.FarmObjectFactory;
@@ -46,13 +47,14 @@ public class FarmFacadeTest {
 
         supportedAnimalTypes = farmObjectFactory.getSupportedAnimalTypes();
         assertNotNull(supportedAnimalTypes);
-        assertEquals(4, supportedAnimalTypes.size());
+        assertEquals(5, supportedAnimalTypes.size());
 
         assertTrue(supportedAnimalTypes.contains(Cat.ANIMAL_TYPE));
         assertTrue(supportedAnimalTypes.contains(Dog.ANIMAL_TYPE));
         assertTrue(supportedAnimalTypes.contains(Cow.ANIMAL_TYPE));
         assertTrue(supportedAnimalTypes.contains(Duck.ANIMAL_TYPE));
-
+        assertTrue(supportedAnimalTypes.contains(Fish.ANIMAL_TYPE));
+        
         System.out.println("testing supported animal types:");
         for (String animalType : supportedAnimalTypes) {
             Animal animal = farmObjectFactory.createAnimal(animalType);
@@ -80,7 +82,7 @@ public class FarmFacadeTest {
         }
 
         List<Animal> allAnimals = farmFacade.getAllAnimals();
-        assertEquals(12, allAnimals.size());
+        assertEquals(15, allAnimals.size());
         for (Animal animal : allAnimals) {
             System.out.println("facade Animal:" + animal);
         }
@@ -94,11 +96,11 @@ public class FarmFacadeTest {
             farmFacade.removeAnimal(name);
         }
         assertEquals(0, farmFacade.getAnimalsOfType(Cat.ANIMAL_TYPE).size());
-
+        assertEquals(3, farmFacade.getAnimalsOfType(Fish.ANIMAL_TYPE).size());
         allAnimals = farmFacade.getAllAnimals();
-        assertEquals(9, allAnimals.size());
+        assertEquals(12, allAnimals.size());
 
-        assertEquals(allAnimals.get(8).getSound(), "Quack");
+        assertEquals(allAnimals.get(10).getSound(), "Quack");
         
         Animal animal = allAnimals.get(4);
         System.out.println(animal);

@@ -7,6 +7,7 @@ package org.solent.com504.jpaexample1.impl.dao.jpa;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,7 +58,16 @@ public class PersonDAOJpaImpl implements PersonDAO {
 
     @Override
     public void deleteById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        entityManager.getTransaction().begin();
+        try {
+            Query q = entityManager.createQuery("DELETE FROM Person person WHERE person.id=:id");
+            q.setParameter("id", id);
+            q.executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            LOG.error(ex);
+            entityManager.getTransaction().rollback();
+        }
     }
 
     @Override

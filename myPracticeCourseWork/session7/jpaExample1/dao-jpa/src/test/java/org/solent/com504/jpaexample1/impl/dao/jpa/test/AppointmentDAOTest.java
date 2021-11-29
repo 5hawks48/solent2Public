@@ -13,7 +13,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.solent.com504.jpaexample1.impl.dao.jpa.DAOFactoryJPAImpl;
 import org.solent.com504.jpaexample1.model.dao.AppointmentDAO;
+import org.solent.com504.jpaexample1.model.dao.PersonDAO;
 import org.solent.com504.jpaexample1.model.dto.Appointment;
+import org.solent.com504.jpaexample1.model.dto.Person;
 
 
 /**
@@ -31,18 +33,38 @@ public class AppointmentDAOTest {
     @Before
     public void before() {
         appointmentDao = daoFactory.getAppointmentDAO();
+        appointmentDao.deleteAll();
         assertNotNull(appointmentDao);
     }
 
     @Test
     public void createAppointmentDAOTest() {
         LOG.debug("start of createAppointmentDAOTest(");
+        appointmentDao.deleteAll();
         Appointment appointment = new Appointment();
         appointment.setHr(1);
         appointmentDao.save(appointment);
         
         List<Appointment> apps = appointmentDao.findAll();
-        assertEquals(apps.size(), 1);
+        assertEquals(1, apps.size());
+        // this test simply runs the before method
+        LOG.debug("end of createAppointmentDAOTest(");
+    }
+    
+    @Test
+    public void addPersonToAppointmentTest() {
+        LOG.debug("start of addPersonToAppointmentTest(");
+        PersonDAO personDao = daoFactory.getPersonDAO();
+        appointmentDao.deleteAll();
+        Appointment appointment = new Appointment();
+        appointment.setHr(1);
+        Person personA = new Person();
+        personA.setFirstName("FirstName");
+        personDao.save(personA);
+        appointment.setPersonA(personA);
+        appointmentDao.save(appointment);
+        List<Appointment> apps = appointmentDao.findAll();
+        assertEquals(1, apps.size());
         // this test simply runs the before method
         LOG.debug("end of createAppointmentDAOTest(");
     }
