@@ -65,6 +65,7 @@ public class AppointmentDAOTest {
         appointmentDao.save(appointment);
         List<Appointment> apps = appointmentDao.findAll();
         assertEquals(1, apps.size());
+        assertEquals(personA, apps.get(0).getPersonA());
         // this test simply runs the before method
         LOG.debug("end of createAppointmentDAOTest(");
     }
